@@ -67,16 +67,20 @@ func main() {
 		{"hobbies": "movie"},
 	}
 
-	sliceKeys := make([]int, cap(data))
-	//sKeys := make([]string, cap(data))
+	sliceKeys := make([]string, cap(data))
+	sArr := make([]string, cap(data))
 	i := 0
 	for k := range data {
-		sliceKeys[i] = k
-		fmt.Println(sliceKeys[i])
+		//sliceKeys[i] = k
+		//fmt.Println(sliceKeys[i])
+		fmt.Println(data[i])
+		for index := range data[k] {
+			sliceKeys = append(sliceKeys, data[k][index])
+		}
 		i++
 	}
 
-	fmt.Println(data[0]["nama"])
+	//fmt.Println(data[0]["nama"])
 }
 
 type reversedKeys struct {
@@ -93,4 +97,15 @@ func sortedKeysAsc(m map[int]string) []int {
 	}
 	sort.Ints(keys)
 	return keys
+}
+
+func mapkey(m map[string]int, value int) (key string, ok bool) {
+	for k, v := range m {
+		if v == value {
+			key = k
+			ok = true
+			return
+		}
+	}
+	return
 }
