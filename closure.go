@@ -3,29 +3,47 @@ package main
 import "fmt"
 
 func main() {
-	getMinMax := func(n []int) (int, int) {
+	fmt.Println("------------------")
+	fmt.Println("Closure")
+	closure()
+
+	fmt.Println("------------------")
+	fmt.Println("Immediately-Invoked Function Expression (IIFE)")
+	immediatelyInvokedFunctionExpress()
+
+	fmt.Println("------------------")
+	var max = 3
+	var numbers = []int{2, 3, 0, 4, 3, 2, 0, 4, 2, 0, 3}
+	var howMany, getNumbers = findmax(numbers, max)
+	var theNumbers = getNumbers()
+
+	fmt.Println("numbers\t:", numbers)
+	fmt.Printf("find \t: %d\n\n", max)
+
+	fmt.Println("found \t:", howMany)    // 9
+	fmt.Println("value \t:", theNumbers) // [2 3 0 3 2 0 2 0 3]
+}
+
+func closure() {
+	// closure
+	var getMinMax = func(n []int) (int, int) {
 		var min, max int
-		for index, number := range n {
+		for i, e := range n {
 			switch {
-			case index == 0:
-				max, min = number, number
-			case number > max:
-				max = number
-			case number < min:
-				min = number
+			case i == 0:
+				max, min = e, e
+			case e > max:
+				max = e
+			case e < min:
+				min = e
 			}
 		}
 		return min, max
 	}
 
-	numbers := []int{100, 90, 4, 5, 43, 543, 5, 82, 2910, 3930, 99, 3234}
+	var numbers = []int{75, 54, 4, 7, 7, 3, 55, 2, 6}
 	var min, max = getMinMax(numbers)
 	fmt.Printf("data : %v\nMin : %v\nMax : %v\n", numbers, min, max)
-
-	immediatelyInvokedFunctionExpress()
-
-	total, result := findmax(numbers, 100)
-	fmt.Printf("total numbers : %d\nResult : %v", total, result())
 }
 
 func immediatelyInvokedFunctionExpress() {
@@ -40,7 +58,7 @@ func immediatelyInvokedFunctionExpress() {
 			r = append(r, e)
 		}
 		return r
-	}(98)
+	}(8)
 	fmt.Printf("Original Number : %v\n", numbers)
 	fmt.Printf("Filter Number : %v\n", newNumber)
 }
