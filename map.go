@@ -68,7 +68,7 @@ func main() {
 	}
 
 	sliceKeys := make([]string, cap(data))
-	sArr := make([]string, cap(data))
+
 	i := 0
 	for k := range data {
 		//sliceKeys[i] = k
